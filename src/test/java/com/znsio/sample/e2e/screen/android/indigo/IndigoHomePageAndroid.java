@@ -30,13 +30,10 @@ public class IndigoHomePageAndroid extends IndigoHomeScreen {
 
     @Override
     public String gotoVoucherPage() {
-        driver.waitTillElementIsPresent(byContinueAsGuestId, 10);
-        driver.findElement(byContinueAsGuestId).click();
-        driver.waitTillElementIsPresent(byGiftVoucherXpath, 4);
-        driver.findElement(byGiftVoucherXpath).click();
+        driver.waitTillElementIsPresent(byContinueAsGuestId).click();;
+        driver.waitTillElementIsPresent(byGiftVoucherXpath).click();
         LOGGER.info("Voucher Page is opened");
-        driver.waitTillElementIsPresent(byGetVoucherPageHeaderXpath);
-        String voucherPageHeader = driver.findElement(byGetVoucherPageHeaderXpath).getText();
+        String voucherPageHeader = driver.waitTillElementIsPresent(byGetVoucherPageHeaderXpath).getText();
         return voucherPageHeader;
     }
 }

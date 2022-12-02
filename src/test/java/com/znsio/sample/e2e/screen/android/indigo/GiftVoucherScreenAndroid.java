@@ -63,8 +63,7 @@ public class GiftVoucherScreenAndroid extends GiftVoucherScreen {
         Map data = (Map) context.getTestState(SAMPLE_TEST_CONTEXT.USER_DETAILS);
         int voucherAmount = Integer.parseInt(quantity) * Integer.parseInt(denomination);
         context.addTestState(SAMPLE_TEST_CONTEXT.VOUCHER_PRICE, String.valueOf(voucherAmount));
-        driver.waitTillElementIsPresent(bySelectDenominationXpath);
-        driver.findElement(bySelectDenominationXpath).click();
+        driver.waitTillElementIsPresent(bySelectDenominationXpath).click();;
         driver.findElement(By.xpath(String.format(byDenominationValue, denomination))).click();
         driver.findElement(bySelectQuantityXpath).click();
         driver.findElement(By.xpath(String.format(byQuantityValue, quantity))).click();
@@ -81,8 +80,7 @@ public class GiftVoucherScreenAndroid extends GiftVoucherScreen {
 
     @Override
     public String getPreviewVoucherDetails() {
-        driver.waitTillElementIsPresent(byReceipentNamePreviewXpath);
-        String receipent = driver.findElement(byReceipentNamePreviewXpath).getText().trim();
+        String receipent = driver.waitTillElementIsPresent(byReceipentNamePreviewXpath).getText().trim();
         String message = driver.findElement(byMessagePreviewXpath).getText().trim();
         driver.scrollDownByScreenSize();
         visually.takeScreenshot(SCREEN_NAME, "Preview Voucher");
@@ -95,15 +93,13 @@ public class GiftVoucherScreenAndroid extends GiftVoucherScreen {
     public GiftVoucherScreen fillDeliveryDetails() {
         LOGGER.info("Entering Delivery Details");
         driver.scrollDownByScreenSize();
-        driver.waitTillElementIsPresent(byReceiverFNameXpath);
-        driver.findElement(byReceiverFNameXpath).sendKeys(utils.randomString());
+        driver.waitTillElementIsPresent(byReceiverFNameXpath).sendKeys(utils.randomString());
         driver.scrollDownByScreenSize();
         driver.findElement(byReceiverLNameXpath).sendKeys(utils.randomString());
         driver.findElement(byReceiverEmailXpath).sendKeys(utils.randomString() + "@gmail.com");
         driver.findElement(byReceiverPhoneXpath).sendKeys(utils.randomNumber());
         driver.scrollDownByScreenSize();
-        driver.waitTillElementIsPresent(bySenderFNameXpath);
-        driver.findElement(bySenderFNameXpath).sendKeys(utils.randomString());
+        driver.waitTillElementIsPresent(bySenderFNameXpath).sendKeys(utils.randomString());
         driver.findElement(bySenderLNameXpath).sendKeys(utils.randomString());
         driver.findElement(bySenderEmailXpath).sendKeys(utils.randomString() + "@gmail.com");
         driver.findElement(bySenderPhoneXpath).sendKeys(utils.randomNumber());
@@ -119,8 +115,7 @@ public class GiftVoucherScreenAndroid extends GiftVoucherScreen {
     public String enterInvalidPromocode() {
         LOGGER.info("Entering invalid promocode");
         driver.scrollDownByScreenSize();
-        driver.waitTillElementIsPresent(byPromocodeXpath);
-        driver.findElement(byPromocodeXpath).sendKeys(ReusableMethods.randomString());
+        driver.waitTillElementIsPresent(byPromocodeXpath).sendKeys(ReusableMethods.randomString());;
         driver.findElement(byApplyPromocodeButtonXpath).click();
         String errMsg = driver.findElement(byErrorMssgXpath).getText();
         visually.checkWindow(SCREEN_NAME, "Screen with invalid promocode");
