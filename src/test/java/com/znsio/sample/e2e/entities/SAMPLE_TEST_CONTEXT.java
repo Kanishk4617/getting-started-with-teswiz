@@ -8,6 +8,7 @@ public class SAMPLE_TEST_CONTEXT
     public static final String MEETING_ID = "meetingId";
     public static final String MEETING_PASSWORD = "meetingPassword";
     public static final String INVITATION_LINK = "invitationLink";
+    public static final String GUEST_USER = "guestUser";
     public static final String VOUCHER_PRICE = "voucherPrice";
     public static final String USER_DETAILS = "userDetails";
 }
