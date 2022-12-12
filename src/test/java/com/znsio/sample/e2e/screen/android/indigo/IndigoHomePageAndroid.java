@@ -18,7 +18,7 @@ public class IndigoHomePageAndroid extends IndigoHomeScreen {
     private final String SCREEN_NAME = IndigoHomePageAndroid.class.getSimpleName();
 
     private static final By byContinueAsGuestId = By.id("in.goindigo.android:id/button_as_guest");
-    private static final By byGiftVoucherXpath = By.xpath("//*[contains(@text, 'Gift voucher')]/..");
+    private static final By byGiftVoucherXpath = By.xpath("//android.widget.TextView[contains(@text, 'Gift voucher')]/..");
     private static final By byGetVoucherPageHeaderXpath = By.xpath("//android.view.View[contains(@text, 'Gift Voucher Denomination')]");
 
 

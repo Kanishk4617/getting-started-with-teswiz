@@ -24,9 +24,10 @@ public class PaymentScreenWeb extends PaymentScreen {
     @Override
     public String getPaymentAmount() {
         visually.takeScreenshot(SCREEN_NAME, "Payment Screen");
-        String pymnt = driver.findElement(actualPayment).getText();
-        LOGGER.info("Amount on payment page = "+ pymnt);
-        return utils.fetchPrice(pymnt);
+        String payment = driver.findElement(actualPayment).getText();
+        LOGGER.info("Amount on payment page = "+ payment);
+        String amount[] = payment.split(" ");
+        return amount[1];
     }
 
 

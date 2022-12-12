@@ -8,6 +8,7 @@ import com.znsio.e2e.tools.Visual;
 import com.znsio.sample.e2e.entities.SAMPLE_TEST_CONTEXT;
 import com.znsio.sample.e2e.screen.web.indigo.GiftVoucherScreen;
 import com.znsio.sample.e2e.screen.windows.notepad.NotepadScreenWindows;
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
@@ -88,14 +89,14 @@ public class GiftVoucherScreenWeb extends GiftVoucherScreen {
     public GiftVoucherScreen fillDeliveryDetails() {
         LOGGER.info("Entering Delivery Details");
         driver.waitTillElementIsPresent(byReceiverFNameId);
-        driver.findElement(byReceiverFNameId).sendKeys(utils.randomString());
-        driver.findElement(byReceiverLNameId).sendKeys(utils.randomString());
-        driver.findElement(byReceiverEmailId).sendKeys(utils.randomString() + "@gmail.com");
-        driver.findElement(byReceiverPhoneId).sendKeys(utils.randomNumber());
-        driver.findElement(bySenderFNameId).sendKeys(utils.randomString());
-        driver.findElement(bySenderLNameId).sendKeys(utils.randomString());
-        driver.findElement(bySenderEmailId).sendKeys(utils.randomString() + "@gmail.com");
-        driver.findElement(bySenderPhoneId).sendKeys(utils.randomNumber());
+        driver.findElement(byReceiverFNameId).sendKeys(RandomStringUtils.randomAlphabetic(10));
+        driver.findElement(byReceiverLNameId).sendKeys(RandomStringUtils.randomAlphabetic(10));
+        driver.findElement(byReceiverEmailId).sendKeys(RandomStringUtils.randomAlphabetic(10) + "@gmail.com");
+        driver.findElement(byReceiverPhoneId).sendKeys(RandomStringUtils.randomNumeric(10));
+        driver.findElement(bySenderFNameId).sendKeys(RandomStringUtils.randomAlphabetic(10));
+        driver.findElement(bySenderLNameId).sendKeys(RandomStringUtils.randomAlphabetic(10));
+        driver.findElement(bySenderEmailId).sendKeys(RandomStringUtils.randomAlphabetic(10) + "@gmail.com");
+        driver.findElement(bySenderPhoneId).sendKeys(RandomStringUtils.randomNumeric(10));
         driver.findElement(byTnCId).click();
         visually.takeScreenshot(SCREEN_NAME, "Delivery Details entered");
         driver.findElement(byPayNowXpath).click();
@@ -106,7 +107,7 @@ public class GiftVoucherScreenWeb extends GiftVoucherScreen {
     public String enterInvalidPromocode() {
         LOGGER.info("Entering invalid promocode");
         driver.waitTillElementIsVisible(byPromocodeId, 3);
-        driver.findElement(byPromocodeId).sendKeys(ReusableMethods.randomString());
+        driver.findElement(byPromocodeId).sendKeys(RandomStringUtils.randomAlphabetic(10));
         driver.findElement(byApplyPromocodeButtonId).click();
         String errMsg = driver.findElement(byErrorMssgXpath).getText();
         visually.checkWindow(SCREEN_NAME, "Screen with invalid promocode");
@@ -114,9 +115,9 @@ public class GiftVoucherScreenWeb extends GiftVoucherScreen {
     }
 
     @Override
-    public String getAmountAfterApplyingPromocode() { //improvement
+    public String getAmountAfterApplyingPromocode() {
         String amountAfterPromocode = driver.findElement(byNewPriceXpath).getText();
-        return utils.fetchPrice(amountAfterPromocode);
-    }
+        String amount[] = amountAfterPromocode.split(" ");
+        return amount[1];    }
 
 }

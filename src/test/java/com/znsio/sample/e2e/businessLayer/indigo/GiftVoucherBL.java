@@ -57,10 +57,11 @@ public class GiftVoucherBL {
 
     public GiftVoucherBL enterPromocode() {
         LOGGER.info("Applying invalid promocode");
-        String errorMssg = GiftVoucherScreen.get().enterInvalidPromocode();
+        GiftVoucherScreen GiftVoucherscreen = GiftVoucherScreen.get();
+        String errorMssg = GiftVoucherscreen.enterInvalidPromocode();
         softly.assertThat(errorMssg).as("Promocode not applied").isEqualTo("Invalid Promo Code.");
         String amount = (String) context.getTestState(SAMPLE_TEST_CONTEXT.VOUCHER_PRICE);
-        Assert.assertEquals(GiftVoucherScreen.get().getAmountAfterApplyingPromocode(),amount);
+        Assert.assertEquals(GiftVoucherscreen.getAmountAfterApplyingPromocode(),amount);
         GiftVoucherScreen.get().fillDeliveryDetails();
         return this;
     }

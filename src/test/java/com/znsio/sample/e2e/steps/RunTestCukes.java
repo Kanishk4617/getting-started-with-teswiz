@@ -17,7 +17,6 @@ import io.cucumber.java.Scenario;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.apache.log4j.Logger;
 import org.testng.annotations.DataProvider;
-
 import java.util.Map;
 
 public class RunTestCukes
